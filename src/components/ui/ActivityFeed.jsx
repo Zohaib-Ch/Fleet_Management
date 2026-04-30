@@ -27,10 +27,10 @@ export default function ActivityFeed({ logs, className = "" }) {
         <div key={day} className="space-y-6">
           <div className="flex items-center gap-4">
             <h4 className="text-[10px] font-black text-secondary uppercase tracking-[0.3em] whitespace-nowrap">{day}</h4>
-            <div className="h-px w-full bg-white/5"></div>
+            <div className="h-px w-full bg-primary/5"></div>
           </div>
           
-          <div className="space-y-4 relative before:absolute before:left-[27px] before:top-2 before:bottom-2 before:w-px before:bg-white/5">
+          <div className="space-y-4 relative before:absolute before:left-[27px] before:top-2 before:bottom-2 before:w-px before:bg-primary/5">
             {dayLogs.map((log, i) => {
               const config = categoryConfig[log.category] || categoryConfig.started;
               return (
@@ -41,7 +41,7 @@ export default function ActivityFeed({ logs, className = "" }) {
                   transition={{ delay: i * 0.1 }}
                   className="relative pl-16 group"
                 >
-                  <div className={`absolute left-0 top-0 w-14 h-14 rounded-2xl ${config.bg} border border-white/10 flex items-center justify-center z-10 group-hover:border-gold transition-colors shadow-2xl`}>
+                  <div className={`absolute left-0 top-0 w-14 h-14 rounded-2xl ${config.bg}  flex items-center justify-center z-10 group-hover:border-gold transition-colors shadow-2xl`}>
                     <config.icon size={20} className={config.color} />
                   </div>
                   
@@ -60,7 +60,7 @@ export default function ActivityFeed({ logs, className = "" }) {
                     </div>
                     
                     <div className="flex items-center gap-3 mt-3">
-                      <span className={`px-2 py-0.5 rounded-md text-[8px] font-black uppercase tracking-widest border border-white/5 ${config.color} bg-white/[0.02]`}>
+                      <span className={`px-2 py-0.5 rounded-md text-[8px] font-black uppercase tracking-widest  ${config.color} bg-primary/5`}>
                         {config.label}
                       </span>
                       {log.ref && (

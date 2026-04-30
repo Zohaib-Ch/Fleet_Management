@@ -10,7 +10,7 @@ export default function ActivityLogView() {
       <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/60">
         <div className="mb-6">
           <h3 className="text-xl font-bold text-slate-800">Fleet Velocity</h3>
-          <p className="text-slate-500 text-sm mt-1">Miles driven per day across the entire fleet (Last 30 Days)</p>
+          <p className="text-secondary text-sm mt-1">Miles driven per day across the entire fleet (Last 30 Days)</p>
         </div>
         <div className="h-[300px] w-full">
           <ResponsiveContainer width="100%" height="100%">
@@ -57,7 +57,7 @@ export default function ActivityLogView() {
                 {log.avatar ? (
                   <img src={log.avatar} alt={log.driver} className="w-full h-full rounded-full object-cover" />
                 ) : (
-                  <div className={`w-full h-full rounded-full flex items-center justify-center text-white
+                  <div className={`w-full h-full rounded-full flex items-center justify-center text-primary
                     ${log.iconType === 'warning' ? 'bg-amber-500' : ''}
                     ${log.iconType === 'wrench' ? 'bg-red-500' : ''}
                   `}>
@@ -69,7 +69,7 @@ export default function ActivityLogView() {
 
               {/* Content */}
               <div className="flex-1 bg-slate-50/50 rounded-xl p-4 border border-slate-100 hover:border-slate-300 transition-colors">
-                <p className="text-sm text-slate-700 leading-relaxed">
+                <p className="text-sm text-secondary leading-relaxed">
                   <span className="font-bold text-slate-900">{log.driver}</span>{' '}
                   {log.message}
                 </p>

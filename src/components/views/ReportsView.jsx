@@ -35,9 +35,9 @@ export default function ReportsView() {
           { label: 'Operational Cost', val: '$12,450', trend: '-5.2%', icon: TrendingUp, color: 'text-blue-400' },
           { label: 'Risk Mitigation', val: '99.9%', trend: 'Stable', icon: ShieldCheck, color: 'text-purple-400' },
         ].map((kpi, i) => (
-          <div key={i} className="glass-obsidian p-8 rounded-[2.5rem] border-white/5 relative overflow-hidden group">
+          <div key={i} className="glass-obsidian p-8 rounded-[2.5rem]  relative overflow-hidden group">
             <div className="flex justify-between items-start mb-6">
-              <div className={`p-3 rounded-xl bg-white/5 border border-white/10 ${kpi.color}`}>
+              <div className={`p-3 rounded-xl bg-primary/5  ${kpi.color}`}>
                 <kpi.icon size={20} />
               </div>
               <span className={`text-[10px] font-black px-2 py-1 rounded-lg ${kpi.trend.startsWith('+') ? 'text-emerald-400 bg-emerald-500/10' : 'text-blue-400 bg-blue-500/10'}`}>
@@ -62,8 +62,8 @@ export default function ReportsView() {
               <p className="text-[10px] font-black text-secondary uppercase tracking-widest mt-1">Global average speed vs target throughput</p>
             </div>
             <div className="flex gap-2">
-              <button className="p-3 bg-white/5 rounded-xl text-secondary hover:text-gold transition-all border border-white/10"><Share2 size={16} /></button>
-              <button className="p-3 bg-white/5 rounded-xl text-secondary hover:text-gold transition-all border border-white/10"><Printer size={16} /></button>
+              <button className="p-3 bg-primary/5 rounded-xl text-secondary hover:text-gold transition-all "><Share2 size={16} /></button>
+              <button className="p-3 bg-primary/5 rounded-xl text-secondary hover:text-gold transition-all "><Printer size={16} /></button>
             </div>
           </div>
           <div className="h-[350px]">
@@ -100,7 +100,7 @@ export default function ReportsView() {
                   <span className="text-[10px] font-black text-secondary uppercase tracking-widest">{cost.label}</span>
                   <span className="text-sm font-luxury text-primary italic">{cost.val}</span>
                 </div>
-                <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                <div className="w-full h-1.5 bg-primary/5 rounded-full overflow-hidden">
                   <motion.div initial={{ width: 0 }} animate={{ width: `${cost.progress}%` }} className={`h-full ${cost.color}`} />
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function ReportsView() {
           <HolographicCard key={driver.id} glowColor={driver.status === 'Optimal' ? 'blue' : 'gold'} className="p-8 rounded-[3rem]">
             <div className="flex justify-between items-start mb-8">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl overflow-hidden border border-white/10">
+                <div className="w-14 h-14 rounded-2xl overflow-hidden ">
                   <img src={`https://i.pravatar.cc/150?u=${driver.id}`} alt="driver" className="w-full h-full object-cover" />
                 </div>
                 <div>
@@ -168,7 +168,7 @@ export default function ReportsView() {
           <h3 className="text-2xl font-luxury text-primary tracking-tighter italic uppercase mb-10">Punctuality Ranking</h3>
           <div className="space-y-6">
             {topCompleters.map((c, i) => (
-              <div key={i} className="flex items-center gap-6 p-6 rounded-3xl bg-white/[0.02] border border-white/5 group hover:bg-white/[0.04] transition-all">
+              <div key={i} className="flex items-center gap-6 p-6 rounded-3xl bg-primary/5  group hover:bg-primary/10 transition-all">
                 <div className="text-2xl font-luxury text-gold italic w-8">{i + 1}</div>
                 <div className="flex-1 flex justify-between items-center">
                   <div>
@@ -191,10 +191,10 @@ export default function ReportsView() {
               <h3 className="text-2xl font-luxury text-primary tracking-tighter uppercase italic">Executive Audit Stream</h3>
               <Clock size={20} className="text-gold" />
            </div>
-           <div className="space-y-8 relative before:absolute before:left-[27px] before:top-2 before:bottom-2 before:w-px before:bg-white/5">
+           <div className="space-y-8 relative before:absolute before:left-[27px] before:top-2 before:bottom-2 before:w-px before:bg-primary/5">
               {activityLogs.slice(0, 4).map(log => (
                  <div key={log.id} className="relative pl-16 group">
-                    <div className="absolute left-0 top-0 w-14 h-14 rounded-2xl bg-primary border border-white/10 flex items-center justify-center z-10 group-hover:border-gold transition-colors">
+                    <div className="absolute left-0 top-0 w-14 h-14 rounded-2xl bg-primary  flex items-center justify-center z-10 group-hover:border-gold transition-colors">
                        <div className="text-secondary group-hover:text-gold transition-colors">
                           <CheckCircle size={20} />
                        </div>
@@ -208,7 +208,7 @@ export default function ReportsView() {
                           <span className="text-[10px] font-bold text-secondary ml-4 shrink-0">{log.time}</span>
                        </div>
                        <div className="flex gap-3">
-                          <span className="px-3 py-1 bg-white/5 rounded-lg text-[9px] font-black text-secondary uppercase tracking-widest border border-white/5">LOG_RE_4920</span>
+                          <span className="px-3 py-1 bg-primary/5 rounded-lg text-[9px] font-black text-secondary uppercase tracking-widest ">LOG_RE_4920</span>
                           <span className="px-3 py-1 bg-emerald-500/10 rounded-lg text-[9px] font-black text-emerald-400 uppercase tracking-widest border border-emerald-500/10">VERIFIED</span>
                        </div>
                     </div>

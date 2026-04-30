@@ -34,7 +34,7 @@ export const LiveSignalChart = ({ data, theme }) => (
           <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
         </linearGradient>
       </defs>
-      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+      <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" vertical={false} />
       <XAxis 
         dataKey="time" 
         axisLine={false} 
@@ -101,7 +101,7 @@ export const FleetStatusDonut = ({ data }) => {
 export const VehiclesByHubBar = ({ data }) => (
   <ResponsiveContainer width="100%" height="100%">
     <BarChart data={data} layout="vertical">
-      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" horizontal={false} />
+      <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" horizontal={false} />
       <XAxis type="number" hide />
       <YAxis 
         dataKey="name" 
@@ -126,7 +126,7 @@ export const VehiclesByHubBar = ({ data }) => (
 export const TripStatusTimeline = ({ data }) => (
   <ResponsiveContainer width="100%" height="100%">
     <BarChart data={data}>
-      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+      <CartesianGrid strokeDasharray="3 3" stroke="var(--border-primary)" vertical={false} />
       <XAxis 
         dataKey="date" 
         axisLine={false} 
@@ -154,7 +154,7 @@ export const TripStatusTimeline = ({ data }) => (
 export const HubPerformanceProfile = ({ data }) => (
   <ResponsiveContainer width="100%" height="100%">
     <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-      <PolarGrid stroke="rgba(255,255,255,0.05)" />
+      <PolarGrid stroke="var(--border-primary)" />
       <PolarAngleAxis 
         dataKey="hub" 
         tick={{ fill: 'var(--text-secondary)', fontSize: 10, fontWeight: 800 }}

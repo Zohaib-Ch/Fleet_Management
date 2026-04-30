@@ -36,37 +36,37 @@ export default function App() {
 
   // GLOBAL DATA STATE
   const [fleetCars, setFleetCars] = useState(() => {
-    const saved = localStorage.getItem('fleet-cars');
+    const saved = localStorage.getItem('fleet-cars-v2');
     return saved ? JSON.parse(saved) : initialCars;
   });
 
   const [fleetDrivers, setFleetDrivers] = useState(() => {
-    const saved = localStorage.getItem('fleet-drivers');
+    const saved = localStorage.getItem('fleet-drivers-v2');
     return saved ? JSON.parse(saved) : initialDrivers;
   });
 
   const [fleetTrips, setFleetTrips] = useState(() => {
-    const saved = localStorage.getItem('fleet-trips');
+    const saved = localStorage.getItem('fleet-trips-v2');
     return saved ? JSON.parse(saved) : initialTrips;
   });
 
   const [fleetAlerts, setFleetAlerts] = useState(() => {
-    const saved = localStorage.getItem('fleet-alerts');
+    const saved = localStorage.getItem('fleet-alerts-v2');
     return saved ? JSON.parse(saved) : initialAlerts;
   });
 
   const [fleetLogs, setFleetLogs] = useState(() => {
-    const saved = localStorage.getItem('fleet-logs');
+    const saved = localStorage.getItem('fleet-logs-v2');
     return saved ? JSON.parse(saved) : initialLogs;
   });
 
   // PERSISTENCE
   useEffect(() => {
-    localStorage.setItem('fleet-cars', JSON.stringify(fleetCars));
-    localStorage.setItem('fleet-drivers', JSON.stringify(fleetDrivers));
-    localStorage.setItem('fleet-trips', JSON.stringify(fleetTrips));
-    localStorage.setItem('fleet-alerts', JSON.stringify(fleetAlerts));
-    localStorage.setItem('fleet-logs', JSON.stringify(fleetLogs));
+    localStorage.setItem('fleet-cars-v2', JSON.stringify(fleetCars));
+    localStorage.setItem('fleet-drivers-v2', JSON.stringify(fleetDrivers));
+    localStorage.setItem('fleet-trips-v2', JSON.stringify(fleetTrips));
+    localStorage.setItem('fleet-alerts-v2', JSON.stringify(fleetAlerts));
+    localStorage.setItem('fleet-logs-v2', JSON.stringify(fleetLogs));
   }, [fleetCars, fleetDrivers, fleetTrips, fleetAlerts, fleetLogs]);
 
   // TELEMETRY SIMULATION
@@ -180,7 +180,7 @@ export default function App() {
                 {activeTab === 'dashboard' && <span className="text-gradient-gold uppercase">Operations Hub</span>}
                 {activeTab === 'fleet' && <span className="uppercase tracking-widest">Asset Registry</span>}
                 {activeTab === 'drivers' && <span className="uppercase tracking-widest">Personnel Control</span>}
-                {activeTab === 'trips' && <span className="uppercase tracking-widest">Mission Center</span>}
+                {activeTab === 'trips' && <span className="uppercase tracking-widest">Trip Center</span>}
                 {activeTab === 'insights' && <span className="uppercase tracking-widest">Team Intel</span>}
                 {activeTab === 'alerts' && <span className="uppercase tracking-widest">Risk Hub</span>}
                 {activeTab === 'reports' && <span className="uppercase tracking-widest">Audit Terminal</span>}

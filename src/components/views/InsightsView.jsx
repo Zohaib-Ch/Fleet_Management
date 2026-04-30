@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import {
   TrendingUp, Fuel, Timer, Zap, Shield, Target, Users,
-  Cpu, Activity, Globe, AlertTriangle, CheckCircle, ArrowUpRight, 
+  Cpu, Activity, Globe, AlertTriangle, CheckCircle, ArrowUpRight,
   BarChart3, Clock, Scale, Wrench, MoreHorizontal, MessageSquare, Bell
 } from 'lucide-react';
 import HolographicCard from '../ui/HolographicCard';
@@ -59,19 +59,18 @@ export default function InsightsView() {
         ].map((kpi, i) => (
           <HolographicCard key={i} glowColor={kpi.glow} className="p-8 rounded-[2.5rem]">
             <div className="flex justify-between items-start mb-6 relative z-10">
-              <div className={`p-4 rounded-2xl bg-white/5 border border-white/10 ${kpi.color}`}>
+              <div className={`p-4 rounded-2xl bg-primary/5  ${kpi.color}`}>
                 <kpi.icon size={22} />
               </div>
-              <div className={`text-[10px] font-black px-3 py-1.5 rounded-xl border ${
-                kpi.change === '73%' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
-                kpi.change === 'Critical' ? 'bg-red-500/10 text-red-400 border-red-500/20' :
-                'bg-blue-500/10 text-blue-400 border-blue-500/20'
-              }`}>
+              <div className={`text-[10px] font-black px-3 py-1.5 rounded-xl border ${kpi.change === '73%' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
+                  kpi.change === 'Critical' ? 'bg-red-500/10 text-red-400 border-red-500/20' :
+                    'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                }`}>
                 {kpi.change}
               </div>
             </div>
-            <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] ml-1 relative z-10">{kpi.label}</p>
-            <h3 className="text-4xl font-luxury text-white mt-2 tracking-tighter italic uppercase relative z-10">{kpi.val}</h3>
+            <p className="text-secondary text-[10px] font-black uppercase tracking-[0.2em] ml-1 relative z-10">{kpi.label}</p>
+            <h3 className="text-4xl font-luxury text-primary mt-2 tracking-tighter italic uppercase relative z-10">{kpi.val}</h3>
           </HolographicCard>
         ))}
       </div>
@@ -79,19 +78,19 @@ export default function InsightsView() {
       {/* 2. FLEET DISTRIBUTION BAR */}
       <HolographicCard glowColor="blue" className="p-10 rounded-[3rem]">
         <div className="flex justify-between items-center mb-8 relative z-10">
-          <h3 className="text-2xl font-luxury text-white tracking-tighter italic uppercase">Asset Distribution Matrix</h3>
-          <div className="flex gap-6 text-[10px] font-black uppercase tracking-widest text-slate-500">
-             <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-blue-500"></div> Active</div>
-             <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-gold"></div> Idle</div>
-             <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-red-500"></div> Repair</div>
-             <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500"></div> Charging</div>
+          <h3 className="text-2xl font-luxury text-primary tracking-tighter italic uppercase">Asset Distribution Matrix</h3>
+          <div className="flex gap-6 text-[10px] font-black uppercase tracking-widest text-secondary">
+            <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-blue-500"></div> Active</div>
+            <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-gold"></div> Idle</div>
+            <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-red-500"></div> Repair</div>
+            <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500"></div> Charging</div>
           </div>
         </div>
-        <div className="w-full h-4 rounded-full bg-white/5 overflow-hidden flex relative z-10 shadow-2xl">
-           <div className="h-full bg-blue-500 shadow-[0_0_15px_#3b82f6]" style={{ width: '73%' }}></div>
-           <div className="h-full bg-gold shadow-[0_0_15px_#d4af37]" style={{ width: '16%' }}></div>
-           <div className="h-full bg-red-500 shadow-[0_0_15px_#ef4444]" style={{ width: '7%' }}></div>
-           <div className="h-full bg-emerald-500 shadow-[0_0_15px_#10b981]" style={{ width: '4%' }}></div>
+        <div className="w-full h-4 rounded-full bg-primary/5 overflow-hidden flex relative z-10 shadow-2xl">
+          <div className="h-full bg-blue-500 shadow-[0_0_15px_#3b82f6]" style={{ width: '73%' }}></div>
+          <div className="h-full bg-gold shadow-[0_0_15px_#d4af37]" style={{ width: '16%' }}></div>
+          <div className="h-full bg-red-500 shadow-[0_0_15px_#ef4444]" style={{ width: '7%' }}></div>
+          <div className="h-full bg-emerald-500 shadow-[0_0_15px_#10b981]" style={{ width: '4%' }}></div>
         </div>
       </HolographicCard>
 
@@ -99,8 +98,8 @@ export default function InsightsView() {
       <HolographicCard glowColor="emerald" className="p-10 rounded-[3rem]">
         <div className="flex justify-between items-center mb-10 relative z-10">
           <div>
-            <h3 className="text-3xl font-luxury text-white tracking-tighter italic uppercase">Deployment Velocity</h3>
-            <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Personnel Activity Over Time (24h Cycle)</p>
+            <h3 className="text-3xl font-luxury text-primary tracking-tighter italic uppercase">Deployment Velocity</h3>
+            <p className="text-secondary text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Personnel Activity Over Time (24h Cycle)</p>
           </div>
         </div>
         <div className="h-[300px] w-full relative z-10">
@@ -126,126 +125,125 @@ export default function InsightsView() {
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
         {Array.from({ length: 18 }).map((_, i) => (
           <HolographicCard key={i} glowColor="blue" className="p-6 rounded-[2rem] hover:scale-[1.02] transition-all cursor-pointer group">
-             <div className="flex items-center gap-4 mb-6 relative z-10">
-                <img src={`https://i.pravatar.cc/150?u=${i}`} className="w-10 h-10 rounded-xl grayscale group-hover:grayscale-0 transition-all border border-white/10" alt="user" />
-                <div className="overflow-hidden">
-                   <p className="text-[10px] font-black text-white uppercase truncate tracking-widest">{drivers[i % drivers.length].name}</p>
-                   <p className="text-[8px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">Operator-{i+100}</p>
-                </div>
-             </div>
-             <div className="flex justify-between items-center relative z-10">
-                <div className="space-y-1">
-                   <p className="text-[8px] font-black text-slate-600 uppercase tracking-widest">Trips</p>
-                   <p className="text-lg font-luxury text-white italic">{Math.floor(Math.random() * 50) + 10}</p>
-                </div>
-                <div className="text-right space-y-1">
-                   <p className="text-[8px] font-black text-slate-600 uppercase tracking-widest">Perf</p>
-                   <p className="text-lg font-luxury text-blue-400 italic">{Math.floor(Math.random() * 20) + 80}%</p>
-                </div>
-             </div>
-             <div className={`h-1 w-full bg-white/5 rounded-full mt-4 overflow-hidden relative z-10`}>
-                <div className="h-full bg-blue-500/50" style={{ width: `${Math.floor(Math.random() * 50) + 50}%` }}></div>
-             </div>
+            <div className="flex items-center gap-4 mb-6 relative z-10">
+              <img src={`https://i.pravatar.cc/150?u=${i}`} className="w-10 h-10 rounded-xl grayscale group-hover:grayscale-0 transition-all " alt="user" />
+              <div className="overflow-hidden">
+                <p className="text-[10px] font-black text-primary uppercase truncate tracking-widest">{drivers[i % drivers.length].name}</p>
+                <p className="text-[8px] text-secondary font-bold uppercase tracking-widest mt-0.5">Operator-{i + 100}</p>
+              </div>
+            </div>
+            <div className="flex justify-between items-center relative z-10">
+              <div className="space-y-1">
+                <p className="text-[8px] font-black text-secondary uppercase tracking-widest">Trips</p>
+                <p className="text-lg font-luxury text-primary italic">{Math.floor(Math.random() * 50) + 10}</p>
+              </div>
+              <div className="text-right space-y-1">
+                <p className="text-[8px] font-black text-secondary uppercase tracking-widest">Perf</p>
+                <p className="text-lg font-luxury text-blue-400 italic">{Math.floor(Math.random() * 20) + 80}%</p>
+              </div>
+            </div>
+            <div className={`h-1 w-full bg-primary/5 rounded-full mt-4 overflow-hidden relative z-10`}>
+              <div className="h-full bg-blue-500/50" style={{ width: `${Math.floor(Math.random() * 50) + 50}%` }}></div>
+            </div>
           </HolographicCard>
         ))}
       </div>
 
       {/* 5. LOGS & PERFORMERS */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-         <HolographicCard glowColor="purple" className="lg:col-span-8 p-10 rounded-[3.5rem]">
-            <div className="flex justify-between items-center mb-10 relative z-10">
-               <h3 className="text-2xl font-luxury text-white tracking-tighter italic uppercase">Live Intelligence Feed</h3>
-               <MoreHorizontal className="text-slate-700" />
-            </div>
-            <div className="space-y-4 relative z-10">
-               {activityLogs.map((log) => (
-                  <div key={log.id} className="flex items-center justify-between p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-all">
-                     <div className="flex items-center gap-6">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${
-                          log.type === 'alert' ? 'bg-red-500/10 text-red-500 border-red-500/20' : 
-                          'bg-blue-500/10 text-blue-400 border-blue-500/20'
-                        }`}>
-                           {log.type === 'alert' ? <AlertTriangle size={20} /> : <Activity size={20} />}
-                        </div>
-                        <div>
-                           <p className="text-sm font-bold text-white uppercase tracking-wider">{log.user} <span className="text-slate-500 font-medium lowercase"> {log.action} </span> {log.ref}</p>
-                           <p className="text-[10px] text-slate-600 font-black uppercase tracking-widest mt-1">{log.time}</p>
-                        </div>
-                     </div>
-                     <button className="text-[10px] font-black text-slate-500 uppercase tracking-widest hover:text-white transition-colors">Details</button>
+        <HolographicCard glowColor="purple" className="lg:col-span-8 p-10 rounded-[3.5rem]">
+          <div className="flex justify-between items-center mb-10 relative z-10">
+            <h3 className="text-2xl font-luxury text-primary tracking-tighter italic uppercase">Live Intelligence Feed</h3>
+            <MoreHorizontal className="text-secondary" />
+          </div>
+          <div className="space-y-4 relative z-10">
+            {activityLogs.map((log) => (
+              <div key={log.id} className="flex items-center justify-between p-6 rounded-2xl bg-primary/5  hover:bg-primary/10 transition-all">
+                <div className="flex items-center gap-6">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${log.type === 'alert' ? 'bg-red-500/10 text-red-500 border-red-500/20' :
+                      'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                    }`}>
+                    {log.type === 'alert' ? <AlertTriangle size={20} /> : <Activity size={20} />}
                   </div>
-               ))}
-            </div>
-         </HolographicCard>
+                  <div>
+                    <p className="text-sm font-bold text-primary uppercase tracking-wider">{log.user} <span className="text-secondary font-medium lowercase"> {log.action} </span> {log.ref}</p>
+                    <p className="text-[10px] text-secondary font-black uppercase tracking-widest mt-1">{log.time}</p>
+                  </div>
+                </div>
+                <button className="text-[10px] font-black text-secondary uppercase tracking-widest hover:text-primary transition-colors">Details</button>
+              </div>
+            ))}
+          </div>
+        </HolographicCard>
 
-         <HolographicCard glowColor="gold" className="lg:col-span-4 p-10 rounded-[3.5rem]">
-            <h3 className="text-2xl font-luxury text-white tracking-tighter italic uppercase mb-10 relative z-10">Top Operators</h3>
-            <div className="space-y-8 relative z-10">
-               {topPerformers.map((p, i) => (
-                  <div key={i} className="flex items-center justify-between">
-                     <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center text-gold font-black italic text-xs">#{i+1}</div>
-                        <div>
-                           <p className="text-[10px] font-black text-white uppercase tracking-widest">{p.name}</p>
-                           <p className="text-[8px] text-slate-500 font-bold uppercase tracking-widest">{p.trips} Missions</p>
-                        </div>
-                     </div>
-                     <p className="text-xl font-luxury text-gold italic">{p.score}%</p>
+        <HolographicCard glowColor="gold" className="lg:col-span-4 p-10 rounded-[3.5rem]">
+          <h3 className="text-2xl font-luxury text-primary tracking-tighter italic uppercase mb-10 relative z-10">Top Operators</h3>
+          <div className="space-y-8 relative z-10">
+            {topPerformers.map((p, i) => (
+              <div key={i} className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center text-gold font-black italic text-xs">#{i + 1}</div>
+                  <div>
+                    <p className="text-[10px] font-black text-primary uppercase tracking-widest">{p.name}</p>
+                    <p className="text-[8px] text-secondary font-bold uppercase tracking-widest">{p.trips} Missions</p>
                   </div>
-               ))}
-            </div>
-         </HolographicCard>
+                </div>
+                <p className="text-xl font-luxury text-gold italic">{p.score}%</p>
+              </div>
+            ))}
+          </div>
+        </HolographicCard>
       </div>
 
       {/* 6. BOTTOM UTILIZATION & HEALTH */}
       <div className="space-y-10">
-         <HolographicCard glowColor="blue" className="p-10 rounded-[4rem]">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 relative z-10 gap-8">
-               <div>
-                  <h3 className="text-3xl font-luxury text-white tracking-tighter italic uppercase">Operational Load Matrix</h3>
-                  <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Weekly Asset Utilization Efficiency</p>
-               </div>
-               <div className="flex gap-10">
-                  <div className="text-center">
-                     <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Avg Efficiency</p>
-                     <p className="text-2xl font-luxury text-white italic">91.4%</p>
-                  </div>
-                  <div className="text-center">
-                     <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Target Sync</p>
-                     <p className="text-2xl font-luxury text-gold italic">90.0%</p>
-                  </div>
-               </div>
+        <HolographicCard glowColor="blue" className="p-10 rounded-[4rem]">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 relative z-10 gap-8">
+            <div>
+              <h3 className="text-3xl font-luxury text-primary tracking-tighter italic uppercase">Operational Load Matrix</h3>
+              <p className="text-secondary text-[10px] font-bold uppercase tracking-[0.2em] mt-1">Weekly Asset Utilization Efficiency</p>
             </div>
-            <div className="h-[300px] w-full relative z-10">
-               <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={assetUtilizationData}>
-                     <CartesianGrid strokeDasharray="10 10" vertical={false} stroke="rgba(255,255,255,0.02)" />
-                     <XAxis dataKey="name" stroke="#475569" fontSize={10} fontWeight={900} axisLine={false} tickLine={false} />
-                     <YAxis stroke="#475569" fontSize={10} fontWeight={900} axisLine={false} tickLine={false} />
-                     <Tooltip contentStyle={{ backgroundColor: '#0a0a0c', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }} />
-                     <Bar dataKey="usage" fill="#3b82f6" radius={[8, 8, 0, 0]} barSize={60} />
-                     <Bar dataKey="target" fill="rgba(255,255,255,0.05)" radius={[8, 8, 0, 0]} barSize={60} />
-                  </BarChart>
-               </ResponsiveContainer>
+            <div className="flex gap-10">
+              <div className="text-center">
+                <p className="text-[9px] font-black text-secondary uppercase tracking-widest">Avg Efficiency</p>
+                <p className="text-2xl font-luxury text-primary italic">91.4%</p>
+              </div>
+              <div className="text-center">
+                <p className="text-[9px] font-black text-secondary uppercase tracking-widest">Target Sync</p>
+                <p className="text-2xl font-luxury text-gold italic">90.0%</p>
+              </div>
             </div>
-         </HolographicCard>
+          </div>
+          <div className="h-[300px] w-full relative z-10">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={assetUtilizationData}>
+                <CartesianGrid strokeDasharray="10 10" vertical={false} stroke="rgba(255,255,255,0.02)" />
+                <XAxis dataKey="name" stroke="#475569" fontSize={10} fontWeight={900} axisLine={false} tickLine={false} />
+                <YAxis stroke="#475569" fontSize={10} fontWeight={900} axisLine={false} tickLine={false} />
+                <Tooltip contentStyle={{ backgroundColor: '#0a0a0c', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)' }} />
+                <Bar dataKey="usage" fill="#3b82f6" radius={[8, 8, 0, 0]} barSize={60} />
+                <Bar dataKey="target" fill="rgba(255,255,255,0.05)" radius={[8, 8, 0, 0]} barSize={60} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </HolographicCard>
 
-         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {[
-               { label: 'System Health', val: '99.9%', icon: Shield, color: 'text-emerald-500' },
-               { label: 'Latency', val: '14ms', icon: Cpu, color: 'text-blue-500' },
-               { label: 'Secure Link', val: 'Active', icon: Globe, color: 'text-purple-500' },
-               { label: 'Sync Rate', val: '98%', icon: Zap, color: 'text-gold' },
-               { label: 'Alert Rate', val: 'Low', icon: Bell, color: 'text-blue-400' },
-               { label: 'Audit Trail', val: 'Verified', icon: Scale, color: 'text-slate-400' },
-            ].map((node, i) => (
-               <HolographicCard key={i} className="p-6 rounded-[2rem] text-center">
-                  <node.icon size={20} className={`${node.color} mx-auto mb-4 opacity-50`} />
-                  <p className="text-[8px] font-black text-slate-600 uppercase tracking-widest mb-1">{node.label}</p>
-                  <p className="text-lg font-luxury text-white italic">{node.val}</p>
-               </HolographicCard>
-            ))}
-         </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          {[
+            { label: 'System Health', val: '99.9%', icon: Shield, color: 'text-emerald-500' },
+            { label: 'Latency', val: '14ms', icon: Cpu, color: 'text-blue-500' },
+            { label: 'Secure Link', val: 'Active', icon: Globe, color: 'text-purple-500' },
+            { label: 'Sync Rate', val: '98%', icon: Zap, color: 'text-gold' },
+            { label: 'Alert Rate', val: 'Low', icon: Bell, color: 'text-blue-400' },
+            { label: 'Audit Trail', val: 'Verified', icon: Scale, color: 'text-slate-400' },
+          ].map((node, i) => (
+            <HolographicCard key={i} className="p-6 rounded-[2rem] text-center">
+              <node.icon size={20} className={`${node.color} mx-auto mb-4 opacity-50`} />
+              <p className="text-[8px] font-black text-secondary uppercase tracking-widest mb-1">{node.label}</p>
+              <p className="text-lg font-luxury text-primary italic">{node.val}</p>
+            </HolographicCard>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -37,14 +37,14 @@ export default function DriverInsightsView({ onSelectDriver }) {
           <div className="flex flex-col items-center justify-center h-[250px] text-center">
             <div className="relative cursor-pointer group" onClick={() => onSelectDriver(chartData[0])}>
               <img src={chartData[0].avatar} alt={chartData[0].name} className="w-24 h-24 rounded-full border-4 border-emerald-100 mb-4 shadow-sm group-hover:scale-105 transition-transform" />
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md border-2 border-white">
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-emerald-500 text-primary text-xs font-bold px-3 py-1 rounded-full shadow-md border-2 border-white">
                 #1
               </div>
             </div>
             <h4 className="text-xl font-bold text-slate-800 mt-2">{chartData[0].name}</h4>
-            <p className="text-slate-500 text-sm">{chartData[0].role}</p>
+            <p className="text-secondary text-sm">{chartData[0].role}</p>
             <div className="mt-4 bg-slate-50 px-4 py-2 rounded-xl border border-slate-100">
-              <span className="font-bold text-emerald-600">{chartData[0].tripsThisWeek}</span> <span className="text-sm text-slate-600">trips completed</span>
+              <span className="font-bold text-emerald-600">{chartData[0].tripsThisWeek}</span> <span className="text-sm text-secondary">trips completed</span>
             </div>
           </div>
         </div>
@@ -72,17 +72,17 @@ export default function DriverInsightsView({ onSelectDriver }) {
                 <img src={driver.avatar} alt={driver.name} className="w-14 h-14 rounded-full border border-slate-200 group-hover:ring-2 group-hover:ring-blue-100 transition-all" />
                 <div>
                   <h4 className="font-bold text-slate-800 leading-tight group-hover:text-blue-600">{driver.name}</h4>
-                  <p className="text-xs text-slate-500">{driver.role}</p>
+                  <p className="text-xs text-secondary">{driver.role}</p>
                 </div>
               </div>
               
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate-500 font-medium">Trips this week:</span>
+                  <span className="text-secondary font-medium">Trips this week:</span>
                   <span className="font-bold text-slate-800">{driver.tripsThisWeek}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate-500 font-medium">On-time rate:</span>
+                  <span className="text-secondary font-medium">On-time rate:</span>
                   <span className="font-bold text-slate-800">{driver.onTimeRate}%</span>
                 </div>
               </div>
