@@ -325,7 +325,7 @@ export default function FleetDetailsView({ cars, setCars, onSelectCar, addLog })
                                     car.status === 'Idle' ? 'bg-purple-500/10 text-purple-400 border-purple-500/20 glow-purple' :
                                        'bg-red-500/10 text-red-400 border-red-500/20 glow-red'
                                  }`}>
-                                 {car.status === 'En Route' ? 'Active Mission' : car.status}
+                                 {car.status === 'En Route' ? 'Active Trip' : car.status}
                               </span>
                               <div className="text-gold text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-3 group-hover:translate-x-1 transition-transform">
                                  Diagnostics <ChevronRight size={16} />
@@ -340,5 +340,6 @@ export default function FleetDetailsView({ cars, setCars, onSelectCar, addLog })
       </div>
    );
 }
+
 
 

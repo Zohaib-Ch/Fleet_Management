@@ -94,7 +94,7 @@ export default function DriverDetailView({ driver, onBack, cars, trips }) {
            </HolographicCard>
         </div>
 
-        {/* Tactical Mission Deployment */}
+        {/* Tactical Trip Deployment */}
         <div className="xl:col-span-2 space-y-10">
            {/* Current Asset Status */}
            <HolographicCard glowColor="blue" className="rounded-[4rem] p-12">
@@ -189,7 +189,7 @@ export default function DriverDetailView({ driver, onBack, cars, trips }) {
            {/* Deployment History Terminal */}
            <HolographicCard glowColor="blue" className="rounded-[3rem] p-10">
               <div className="flex justify-between items-center mb-10">
-                 <h3 className="text-2xl font-luxury text-primary tracking-tighter italic uppercase">Mission Registry</h3>
+                 <h3 className="text-2xl font-luxury text-primary tracking-tighter italic uppercase">Trip Registry</h3>
                  <span className="text-[10px] font-black text-secondary uppercase tracking-widest">Last 30 Cycles</span>
               </div>
               <div className="space-y-6">
@@ -213,7 +213,7 @@ export default function DriverDetailView({ driver, onBack, cars, trips }) {
                     </div>
                  )) : (
                     <div className="py-10 text-center">
-                       <p className="text-secondary font-black uppercase tracking-widest text-xs">No mission history recorded for this operator.</p>
+                       <p className="text-secondary font-black uppercase tracking-widest text-xs">No Trip history recorded for this operator.</p>
                     </div>
                  )}
               </div>
@@ -295,5 +295,6 @@ export default function DriverDetailView({ driver, onBack, cars, trips }) {
     </div>
   );
 }
+
 
 

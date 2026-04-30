@@ -33,7 +33,7 @@ const assetUtilizationData = [
 ];
 
 const activityLogs = [
-  { id: 1, type: 'status', user: 'Abdullah Ali', action: 'completed mission', ref: 'DX-902', time: '2m ago' },
+  { id: 1, type: 'status', user: 'Abdullah Ali', action: 'completed Trip', ref: 'DX-902', time: '2m ago' },
   { id: 2, type: 'alert', user: 'System', action: 'battery critical', ref: 'VX-112', time: '5m ago' },
   { id: 3, type: 'assign', user: 'Sara Smith', action: 'linked asset', ref: 'ZT-410', time: '12m ago' },
   { id: 4, type: 'status', user: 'Michael Chen', action: 'started shift', ref: 'ALPHA', time: '15m ago' },
@@ -53,7 +53,7 @@ export default function InsightsView() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
           { label: 'Total Fleet Assets', val: '350', change: 'Live', icon: Globe, color: 'text-blue-400', glow: 'blue' },
-          { label: 'Active Missions', val: '256', change: '73%', icon: Activity, color: 'text-emerald-400', glow: 'emerald' },
+          { label: 'Active Trips', val: '256', change: '73%', icon: Activity, color: 'text-emerald-400', glow: 'emerald' },
           { label: 'Idle Personnel', val: '11', change: '4%', icon: Users, color: 'text-gold', glow: 'gold' },
           { label: 'Technical Interventions', val: '83', change: 'Critical', icon: AlertTriangle, color: 'text-red-400', glow: 'red' },
         ].map((kpi, i) => (
@@ -185,7 +185,7 @@ export default function InsightsView() {
                   <div className="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center text-gold font-black italic text-xs">#{i + 1}</div>
                   <div>
                     <p className="text-[10px] font-black text-primary uppercase tracking-widest">{p.name}</p>
-                    <p className="text-[8px] text-secondary font-bold uppercase tracking-widest">{p.trips} Missions</p>
+                    <p className="text-[8px] text-secondary font-bold uppercase tracking-widest">{p.trips} Trips</p>
                   </div>
                 </div>
                 <p className="text-xl font-luxury text-gold italic">{p.score}%</p>
@@ -248,5 +248,6 @@ export default function InsightsView() {
     </div>
   );
 }
+
 
 

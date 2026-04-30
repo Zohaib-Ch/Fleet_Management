@@ -37,7 +37,15 @@ function LocationSelector({ points, setPoints }) {
 function MapResizer() {
    const map = useMap();
    useEffect(() => {
-      const timers = [100, 500, 1000, 2000].map(d => setTimeout(() => map.invalidateSize(), d));
+      const timers = [100, 500, 1000, 2000].map(d => setTimeout(() => {
+         try {
+            if (map && map.getContainer()) {
+               map.invalidateSize();
+            }
+         } catch (e) {
+            // Silently catch errors during view switching
+         }
+      }, d));
       return () => timers.forEach(t => clearTimeout(t));
    }, [map]);
    return null;
@@ -56,7 +64,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
    const [playbackProgress, setPlaybackProgress] = useState(0);
 
    // Form State
-   const [missionName, setMissionName] = useState('');
+   const [TripName, setTripName] = useState('');
    const [selectedDriver, setSelectedDriver] = useState(drivers[0]?.name || '');
    const [selectedCar, setSelectedCar] = useState(cars.find(c => c.status === 'Idle')?.id || cars[0]?.id || '');
 
@@ -102,7 +110,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
       e.preventDefault();
       const newTrip = {
          id: Date.now(),
-         name: missionName || `MISSION-${Math.floor(1000 + Math.random() * 9000)}`,
+         name: TripName || `Trip-${Math.floor(1000 + Math.random() * 9000)}`,
          distance: "14.2 mi",
          eta: "42 mins",
          progress: 0,
@@ -117,11 +125,11 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
       setTimeout(() => {
          setTrips([newTrip, ...trips]);
          setCars(prev => prev.map(c => c.id === selectedCar ? { ...c, status: 'En Route', driver: selectedDriver, activeRoute: newTrip } : c));
-         addLog(selectedDriver, `initialized mission ${newTrip.name}`, selectedCar, 'status');
+         addLog(selectedDriver, `initialized Trip ${newTrip.name}`, selectedCar, 'status');
          setFormSuccess(false);
          setShowAddForm(false);
          setPoints([]);
-         setMissionName('');
+         setTripName('');
       }, 2000);
    };
 
@@ -269,7 +277,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
                               <ExternalLink size={18} strokeWidth={3} /> Asset Diagnostics
                            </button>
                            {selectedTrip.status !== 'Aborted' && (
-                              <button onClick={() => { addLog('Commander', `aborted mission ${selectedTrip.name}`, selectedTrip.carId, 'alert'); setSelectedTrip(null); }} className="flex items-center gap-4 px-8 py-5 bg-red-600/10 border border-red-600/20 text-red-500 font-black rounded-2xl hover:bg-red-600 hover:text-primary transition-all uppercase tracking-widest text-[10px]">
+                              <button onClick={() => { addLog('Commander', `aborted Trip ${selectedTrip.name}`, selectedTrip.carId, 'alert'); setSelectedTrip(null); }} className="flex items-center gap-4 px-8 py-5 bg-red-600/10 border border-red-600/20 text-red-500 font-black rounded-2xl hover:bg-red-600 hover:text-primary transition-all uppercase tracking-widest text-[10px]">
                                  <Zap size={18} strokeWidth={3} /> Abort Trip
                               </button>
                            )}
@@ -353,7 +361,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
                                     { label: 'Avg Velocity', val: '42.5 MPH', trend: '+2.1%' },
                                     { label: 'Fuel Consumed', val: '1.4 GAL', trend: '-0.4%' },
                                     { label: 'G-Force Max', val: '1.2G', trend: 'Stable' },
-                                    { label: 'Engine Temp', val: '194Ã‚Â°F', trend: 'Normal' },
+                                    { label: 'Engine Temp', val: '194Ãƒâ€šÃ‚Â°F', trend: 'Normal' },
                                  ].map((s, i) => (
                                     <div key={i} className="flex justify-between items-center py-4 border-b  last:border-0">
                                        <div>
@@ -431,13 +439,13 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
                                  </div>
                               </div>
                            ) : (
-                              <form id="mission-form-final" onSubmit={handleAddTrip} className="space-y-12">
+                              <form id="Trip-form-final" onSubmit={handleAddTrip} className="space-y-12">
                                  <div className="space-y-8">
                                     <div className="space-y-3">
                                        <label className="text-[10px] font-black text-secondary uppercase tracking-[0.3em] ml-2">Trip Name</label>
                                        <div className="relative group">
                                           <Target className="absolute left-6 top-1/2 -translate-y-1/2 text-[var(--border-primary)] group-focus-within:text-gold transition-colors" size={20} />
-                                          <input required type="text" value={missionName} onChange={(e) => setMissionName(e.target.value)} placeholder="e.g. STRIKE-FORCE-01" className="w-full pl-16 pr-8 py-6 bg-primary/5  rounded-[2rem] text-sm font-black text-primary uppercase tracking-widest outline-none focus:border-gold/50 focus:bg-gold/5 transition-all" />
+                                          <input required type="text" value={TripName} onChange={(e) => setTripName(e.target.value)} placeholder="e.g. STRIKE-FORCE-01" className="w-full pl-16 pr-8 py-6 bg-primary/5  rounded-[2rem] text-sm font-black text-primary uppercase tracking-widest outline-none focus:border-gold/50 focus:bg-gold/5 transition-all" />
                                        </div>
                                     </div>
                                     <div className="space-y-3">
@@ -493,7 +501,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
                         {!formSuccess && (
                            <div className="p-10 bg-[var(--bg-primary)] border-t border-[var(--border-primary)]  shrink-0 space-y-6">
                               <button
-                                 form="mission-form-final"
+                                 form="Trip-form-final"
                                  type="submit"
                                  disabled={points.length < 2}
                                  className={`w-full py-8 rounded-[2rem] font-black uppercase tracking-[0.5em] text-xs transition-all shadow-4xl ${points.length === 2 ? 'bg-gold text-obsidian shadow-gold/20 hover:scale-[1.02] cursor-pointer' : 'bg-primary/5 text-secondary cursor-not-allowed'}`}
@@ -552,6 +560,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
       </div>
    );
 }
+
 
 
 

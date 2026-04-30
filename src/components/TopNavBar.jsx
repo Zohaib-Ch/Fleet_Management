@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Car, Users, Navigation, TrendingUp,
@@ -188,4 +188,5 @@ export default function TopNavBar({ activeTab, onTabChange, appTheme, onToggleTh
     </header>
   );
 }
+
 

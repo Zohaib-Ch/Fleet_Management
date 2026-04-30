@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+﻿import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import TopNavBar from "./components/TopNavBar";
 import DashboardView from "./components/views/DashboardView";
@@ -266,3 +266,4 @@ export default function App() {
     </div>
   );
 }
+

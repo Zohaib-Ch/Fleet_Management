@@ -133,7 +133,7 @@ export default function ReportsView() {
             
             <div className="grid grid-cols-2 gap-6 mb-8">
               <div className="space-y-1">
-                <p className="text-[9px] font-black text-secondary uppercase tracking-widest">Active Missions</p>
+                <p className="text-[9px] font-black text-secondary uppercase tracking-widest">Active Trips</p>
                 <p className="text-xl font-luxury text-primary italic">{driver.open}</p>
               </div>
               <div className="space-y-1">
@@ -173,7 +173,7 @@ export default function ReportsView() {
                 <div className="flex-1 flex justify-between items-center">
                   <div>
                     <h4 className="font-black text-primary text-sm uppercase tracking-wider">{c.name}</h4>
-                    <p className="text-[10px] text-secondary font-bold uppercase tracking-widest mt-1">{c.trips} Missions Completed</p>
+                    <p className="text-[10px] text-secondary font-bold uppercase tracking-widest mt-1">{c.trips} Trips Completed</p>
                   </div>
                   <div className="text-right">
                     <p className="text-xl font-luxury text-emerald-400 italic">{c.score}%</p>
@@ -220,5 +220,6 @@ export default function ReportsView() {
     </div>
   );
 }
+
 
 

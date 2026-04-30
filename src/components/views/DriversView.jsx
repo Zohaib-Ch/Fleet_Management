@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Search, Filter, MoreVertical, Phone, Mail, Award, X, Check, Camera, Star, Zap, ArrowRight } from 'lucide-react';
 
@@ -275,7 +275,7 @@ export default function DriversView({ drivers, setDrivers, onSelectDriver, addLo
             <div className="mt-auto pt-8 border-t border-[var(--border-primary)]  flex justify-between items-center relative z-10">
               <span className={`text-[10px] font-black uppercase tracking-[0.2em] px-4 py-1.5 rounded-xl ${driver.activeRouteId ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-slate-500/10 text-secondary '
                 }`}>
-                {driver.activeRouteId ? 'Live Mission' : 'Idle State'}
+                {driver.activeRouteId ? 'Live Trip' : 'Idle State'}
               </span>
               <button className="text-gold text-[10px] font-black uppercase tracking-widest hover:underline flex items-center gap-2">
                 Executive Profile <ArrowRight size={14} />
@@ -290,5 +290,6 @@ export default function DriversView({ drivers, setDrivers, onSelectDriver, addLo
     </div>
   );
 }
+
 
 

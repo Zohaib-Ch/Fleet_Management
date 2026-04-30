@@ -6,8 +6,8 @@ import {
 } from 'lucide-react';
 
 const categoryConfig = {
-  started: { icon: Navigation, color: 'text-blue-400', bg: 'bg-blue-500/10', label: 'Mission Started' },
-  completed: { icon: CheckCircle, color: 'text-emerald-400', bg: 'bg-emerald-500/10', label: 'Mission Completed' },
+  started: { icon: Navigation, color: 'text-blue-400', bg: 'bg-blue-500/10', label: 'Trip Started' },
+  completed: { icon: CheckCircle, color: 'text-emerald-400', bg: 'bg-emerald-500/10', label: 'Trip Completed' },
   created: { icon: PlusCircle, color: 'text-gold', bg: 'bg-gold/10', label: 'Asset Created' },
   resolved: { icon: ShieldCheck, color: 'text-purple-400', bg: 'bg-purple-500/10', label: 'Alert Resolved' },
   assigned: { icon: UserPlus, color: 'text-blue-400', bg: 'bg-blue-500/10', label: 'Operator Assigned' },
@@ -80,5 +80,6 @@ export default function ActivityFeed({ logs, className = "" }) {
     </div>
   );
 }
+
 
 

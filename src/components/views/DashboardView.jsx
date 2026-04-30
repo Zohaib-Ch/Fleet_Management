@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   MapPin, Navigation, AlertCircle,
@@ -39,7 +39,7 @@ const createDriverIcon = (imageUrl, name) => {
   return L.divIcon({
     className: 'custom-leaflet-icon',
     html: `
-      <div class="flex items-center gap-3 bg-[var(--bg-secondary)] backdrop-blur-md p-1 pr-4 rounded-2xl border border-[var(--border-primary)] shadow-2xl transition-all hover:scale-110">
+      <div class="flex items-center gap-3 bg-[var(--bg-secondary)] backdrop-blur-md p-1 pr-4 rounded-2xl border border-[var(--border-primary)] shadow-2xl transition-all hover:scale-110 cursor-pointer">
          <img src="${imageUrl}" class="w-8 h-8 rounded-xl ring-1 ring-[var(--border-primary)]" />
          <div class="flex flex-col">
            <span class="text-[10px] font-black text-[var(--text-primary)] uppercase tracking-wider">${name}</span>
@@ -58,7 +58,16 @@ const createDriverIcon = (imageUrl, name) => {
 function MapResizer() {
   const map = useMap();
   useEffect(() => {
-    setTimeout(() => { map.invalidateSize(); }, 250);
+    const timer = setTimeout(() => { 
+      try {
+        if (map && map.getContainer()) {
+          map.invalidateSize(); 
+        }
+      } catch (e) {
+        // Silently catch errors during drag-and-drop remounting
+      }
+    }, 250);
+    return () => clearTimeout(timer);
   }, [map]);
   return null;
 }
@@ -94,7 +103,7 @@ const SortableSection = ({ id, children }) => {
   );
 };
 
-export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, logs }) {
+export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, logs, onSelectDriver }) {
   const [items, setItems] = useState(() => {
     const saved = localStorage.getItem('dashboard-order');
     return saved ? JSON.parse(saved) : ['trend', 'distribution', 'analytics', 'activity'];
@@ -147,7 +156,7 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
   };
 
   // Compute live stats from props
-  const activeMissions = trips.filter(t => t.progress < 100).length;
+  const activeTrips = trips.filter(t => t.progress < 100).length;
   const openAlerts = alerts.length;
   const fleetHealth = (cars.reduce((acc, c) => acc + c.fuelLevel, 0) / cars.length).toFixed(1);
   const totalDistance = cars.reduce((acc, c) => acc + parseFloat(c.odometer.replace(',', '')), 0).toFixed(0);
@@ -230,8 +239,8 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
           { id: 'fleet', label: 'Dist. Traversed', val: `${Number(totalDistance).toLocaleString()} mi`, sub: 'Global Fleet Sync', icon: Car, color: 'text-blue-400', glow: 'blue' },
-          { id: 'uptime', label: 'Active Missions', val: activeMissions.toString(), sub: '94.8% Operational', icon: Navigation, color: 'text-emerald-400', glow: 'emerald' },
-          { id: 'missions', label: 'Open Alerts', val: openAlerts.toString(), sub: `${alerts.filter(a => a.type === 'critical').length} Critical Pending`, icon: Bell, color: 'text-gold', glow: 'gold' },
+          { id: 'uptime', label: 'Active Trips', val: activeTrips.toString(), sub: '94.8% Operational', icon: Navigation, color: 'text-emerald-400', glow: 'emerald' },
+          { id: 'Trips', label: 'Open Alerts', val: openAlerts.toString(), sub: `${alerts.filter(a => a.type === 'critical').length} Critical Pending`, icon: Bell, color: 'text-gold', glow: 'gold' },
           { id: 'risk', label: 'Fleet Integrity', val: `${fleetHealth}%`, sub: 'Nominal Condition', icon: ShieldCheck, color: 'text-purple-400', glow: 'purple' },
         ].map((kpi, i) => (
           <HolographicCard key={i} glowColor={kpi.glow} className="p-8 rounded-[2.5rem]">
@@ -261,14 +270,19 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
                         <span className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Live Global Telemetry</span>
                       </div>
                       <div className="w-full h-[580px] rounded-[2.5rem] overflow-hidden relative">
-                        <MapContainer center={[34.0522, -118.2437]} zoom={11} className="w-full h-full" style={{ height: '580px', width: '100%', background: mapTheme === 'dark' ? '#0a0a0c' : '#f8fafc' }}>
+                        <MapContainer key="dashboard-main-map" center={[34.0522, -118.2437]} zoom={11} className="w-full h-full" style={{ height: '580px', width: '100%', background: mapTheme === 'dark' ? '#0a0a0c' : '#f8fafc' }}>
                           <MapResizer />
                           <TileLayer url={mapTheme === 'dark' ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png" : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"} />
                           {trips.map(trip => (
                             <Polyline key={trip.id} positions={trip.path} color={mapTheme === 'dark' ? "#d4af37" : "#f59e0b"} weight={3} opacity={0.6} />
                           ))}
                           {drivers.map(driver => (
-                            <Marker key={driver.id} position={driver.currentLocation} icon={createDriverIcon(driver.avatar, driver.name.split(' ')[0])} />
+                            <Marker 
+                              key={driver.id} 
+                              position={driver.currentLocation} 
+                              icon={createDriverIcon(driver.avatar, driver.name.split(' ')[0])} 
+                              eventHandlers={{ click: () => onSelectDriver(driver) }}
+                            />
                           ))}
                         </MapContainer>
                       </div>
@@ -277,7 +291,7 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
                     <div className="flex flex-col gap-8">
                       <HolographicCard glowColor="gold" className="rounded-[3rem] p-8 flex-1 flex flex-col">
                         <div className="flex justify-between items-center mb-8">
-                          <h3 className="text-xl font-luxury text-primary tracking-tighter uppercase italic">Active Missions</h3>
+                          <h3 className="text-xl font-luxury text-primary tracking-tighter uppercase italic">Active Trips</h3>
                           <button className="text-[10px] font-black text-gold border border-gold/20 px-3 py-1 rounded-lg">LIVE</button>
                         </div>
                         <div className="space-y-6 overflow-y-auto pr-2 custom-scrollbar">
@@ -387,5 +401,6 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
     </div>
   );
 }
+
 
 
