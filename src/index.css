@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #0a0a0c;
+  --color-obsidian-light: #121216;
+  --color-gold: #d4af37;
+  --color-gold-light: #f1d592;
+  --color-emerald-glow: #10b981;
+  --color-blue-glow: #3b82f6;
+  --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
+  --font-luxury: 'Outfit', sans-serif;
+}
+
+/* Global Theme Variables */
+:root {
+  --bg-primary: #0a0a0c;
+  --bg-secondary: #121216;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-primary: rgba(255, 255, 255, 0.05);
+  --glass-bg: rgba(18, 18, 22, 0.85);
+  --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  --accent-gold: #d4af37;
+}
+
+:root.light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-primary: rgba(0, 0, 0, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  --accent-gold: #b68d40;
+}
+
+/* Base Styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Grid Background */
+.grid-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: 
+    linear-gradient(var(--border-primary) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-primary) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Aurora Background Animation */
+.aurora-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.03) 0%, transparent 60%);
+  filter: blur(80px);
+  animation: aurora-move 20s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-move {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.1) translate(20px, 20px); }
+}
+
+/* Semantic Utility Classes */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+
+/* Glassmorphism Luxury Utilities */
+.glass-obsidian {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-primary);
+}
+
+.holographic-card {
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.holographic-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+/* Premium Button System */
+.btn-luxury {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: 0.5s;
+  z-index: -1;
+}
+
+.btn-luxury:hover::before {
+  left: 100%;
+}
+
+.btn-luxury:active {
+  transform: scale(0.95);
+}
+
+/* Glow Effects */
+.glow-blue { box-shadow: 0 0 30px rgba(59, 130, 246, 0.15); }
+.glow-emerald { box-shadow: 0 0 30px rgba(16, 185, 129, 0.15); }
+.glow-gold { box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); }
+.glow-red { box-shadow: 0 0 30px rgba(239, 68, 68, 0.15); }
+.glow-purple { box-shadow: 0 0 30px rgba(168, 85, 247, 0.15); }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* Smooth Transitions */
+.view-transition {
+  animation: view-fade-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes view-fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Luxury Font Utilities */
+.font-luxury {
+  font-family: var(--font-luxury);
+  letter-spacing: -0.02em;
+  font-weight: 900;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #f1d592 0%, #d4af37 50%, #a67c00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Tactical Extras */
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent);
+  animation: scan 3s linear infinite;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { top: 0%; opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.asset-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.luxury-popup .leaflet-popup-content-wrapper {
+  background: #0a0a0c !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 12px !important;
+  font-family: 'Outfit', sans-serif !important;
+  text-transform: uppercase !important;
+  font-size: 10px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.1em !important;
+}
+
+.luxury-popup .leaflet-popup-tip {
+  background: #0a0a0c !important;
+}
+
+/* Native Select Styling Fix */
+select {
+  color-scheme: dark;
+}
+
+:root.light select {
+  color-scheme: light;
+}
+
+select option {
+  background-color: #121216;
+  color: #f8fafc;
+  padding: 12px;
+}
+
+:root.light select option {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+select.appearance-none {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(255,255,255,0.5)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.5rem center;
+  background-size: 1.2em;
+  padding-right: 3.5rem !important;
+}
+
+:root.light select.appearance-none {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(0,0,0,0.5)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+}
