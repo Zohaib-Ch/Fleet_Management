@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { drivers } from '../../data/dummyData';
 
@@ -106,3 +106,5 @@ export default function DriverInsightsView({ onSelectDriver }) {
     </div>
   );
 }
+
+

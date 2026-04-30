@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+﻿import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
    Navigation, Clock, MapPin, Calendar,
@@ -16,7 +16,7 @@ const createTacticalIcon = (color, size = 32) => L.divIcon({
    html: `<div class="relative flex items-center justify-center">
             <div class="absolute w-full h-full rounded-full bg-${color}-500/20 animate-ping"></div>
             <div class="relative w-${size / 4} h-${size / 4} bg-${color}-500 rounded-full border-4 border-white shadow-[0_0_20px_rgba(var(--${color}-rgb),0.5)] flex items-center justify-center">
-               <div class="w-1.5 h-1.5 bg-obsidian rounded-full"></div>
+               <div class="w-1.5 h-1.5 bg-[var(--bg-primary)] rounded-full"></div>
             </div>
           </div>`,
    iconSize: [size, size],
@@ -241,7 +241,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
             {selectedTrip && !showAddForm && (
                <motion.div
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  className="fixed inset-0 z-[400] bg-obsidian/95 backdrop-blur-[50px] overflow-y-auto custom-scrollbar"
+                  className="fixed inset-0 z-[400] bg-[var(--bg-primary)]/95 backdrop-blur-[50px] overflow-y-auto custom-scrollbar"
                >
                   <div className="min-h-screen p-6 md:p-16 max-w-[1800px] mx-auto space-y-16">
                      {/* Overlay Header */}
@@ -280,7 +280,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
                      <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
                         {/* Map Viewport */}
                         <div className="lg:col-span-3 space-y-8">
-                           <div className="h-[750px] rounded-[4rem] overflow-hidden  relative bg-obsidian-light shadow-2xl">
+                           <div className="h-[750px] rounded-[4rem] overflow-hidden  relative bg-[var(--bg-primary)]-light shadow-2xl">
                               <MapContainer
                                  key={selectedTrip.id}
                                  center={selectedTrip.path?.[0] || [34.0522, -118.2437]}
@@ -289,7 +289,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
                                  style={{ height: '100%', width: '100%' }}
                               >
                                  <MapResizer />
-                                 <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png" />
+                                 <TileLayer url={mapTheme === 'dark' ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png" : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"} />
                                  <Polyline positions={selectedTrip.path} color="#3b82f6" weight={8} opacity={0.15} />
                                  <Polyline
                                     positions={selectedTrip.path.slice(0, Math.max(1, Math.floor((playbackProgress / 100) * selectedTrip.path.length)))}
@@ -306,7 +306,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
                                        className: 'asset-marker',
                                        html: `<div class="relative">
                                                 <div class="absolute inset-0 bg-gold/40 rounded-full blur-xl animate-pulse"></div>
-                                                <div class="relative w-14 h-14 bg-obsidian border-4 border-gold rounded-2xl flex items-center justify-center rotate-45 shadow-2xl">
+                                                <div class="relative w-14 h-14 bg-[var(--bg-primary)] border-4 border-gold rounded-2xl flex items-center justify-center rotate-45 shadow-2xl">
                                                    <div class="rotate-[-45deg] text-gold"><Navigation size={24} fill="currentColor" /></div>
                                                 </div>
                                               </div>`,
@@ -353,7 +353,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
                                     { label: 'Avg Velocity', val: '42.5 MPH', trend: '+2.1%' },
                                     { label: 'Fuel Consumed', val: '1.4 GAL', trend: '-0.4%' },
                                     { label: 'G-Force Max', val: '1.2G', trend: 'Stable' },
-                                    { label: 'Engine Temp', val: '194Â°F', trend: 'Normal' },
+                                    { label: 'Engine Temp', val: '194Ã‚Â°F', trend: 'Normal' },
                                  ].map((s, i) => (
                                     <div key={i} className="flex justify-between items-center py-4 border-b  last:border-0">
                                        <div>
@@ -377,7 +377,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
                                  ].map((log, i) => (
                                     <div key={i} className="relative pl-12">
                                        <div className={`absolute left-0 top-1.5 w-7 h-7 rounded-full border-4 border-obsidian z-10 flex items-center justify-center ${log.active ? 'bg-gold shadow-[0_0_15px_#d4af37]' : 'bg-primary/10'}`}>
-                                          <div className={`w-1.5 h-1.5 rounded-full ${log.active ? 'bg-obsidian' : 'bg-white/20'}`}></div>
+                                          <div className={`w-1.5 h-1.5 rounded-full ${log.active ? 'bg-[var(--bg-primary)]' : 'bg-[var(--border-primary)]'}`}></div>
                                        </div>
                                        <div className="flex justify-between items-start mb-2">
                                           <h4 className={`text-xs font-black uppercase italic tracking-tighter ${log.active ? 'text-primary' : 'text-secondary'}`}>{log.title}</h4>
@@ -400,7 +400,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
             {showAddForm && (
                <motion.div
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  className="fixed inset-0 z-[500] bg-obsidian/95 backdrop-blur-3xl flex flex-col overflow-hidden"
+                  className="fixed inset-0 z-[500] bg-[var(--bg-primary)]/95 backdrop-blur-3xl flex flex-col overflow-hidden"
                >
                   <div className="flex-1 flex flex-col lg:flex-row h-full">
                      {/* Designer Sidebar */}
@@ -436,25 +436,25 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
                                     <div className="space-y-3">
                                        <label className="text-[10px] font-black text-secondary uppercase tracking-[0.3em] ml-2">Trip Name</label>
                                        <div className="relative group">
-                                          <Target className="absolute left-6 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-gold transition-colors" size={20} />
+                                          <Target className="absolute left-6 top-1/2 -translate-y-1/2 text-[var(--border-primary)] group-focus-within:text-gold transition-colors" size={20} />
                                           <input required type="text" value={missionName} onChange={(e) => setMissionName(e.target.value)} placeholder="e.g. STRIKE-FORCE-01" className="w-full pl-16 pr-8 py-6 bg-primary/5  rounded-[2rem] text-sm font-black text-primary uppercase tracking-widest outline-none focus:border-gold/50 focus:bg-gold/5 transition-all" />
                                        </div>
                                     </div>
                                     <div className="space-y-3">
                                        <label className="text-[10px] font-black text-secondary uppercase tracking-[0.3em] ml-2">Assigned Operator</label>
                                        <div className="relative group">
-                                          <User className="absolute left-6 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-gold transition-colors" size={20} />
+                                          <User className="absolute left-6 top-1/2 -translate-y-1/2 text-[var(--border-primary)] group-focus-within:text-gold transition-colors" size={20} />
                                           <select className="w-full pl-16 pr-8 py-6 bg-primary/5  rounded-[2rem] text-sm font-black text-primary appearance-none outline-none focus:border-gold/50 focus:bg-gold/5 transition-all" value={selectedDriver} onChange={(e) => setSelectedDriver(e.target.value)}>
-                                             {drivers.map(d => <option key={d.id} className="bg-obsidian">{d.name}</option>)}
+                                             {drivers.map(d => <option key={d.id} className="bg-[var(--bg-primary)]">{d.name}</option>)}
                                           </select>
                                        </div>
                                     </div>
                                     <div className="space-y-3">
                                        <label className="text-[10px] font-black text-secondary uppercase tracking-[0.3em] ml-2">Asset Allocation</label>
                                        <div className="relative group">
-                                          <Car className="absolute left-6 top-1/2 -translate-y-1/2 text-white/20 group-focus-within:text-gold transition-colors" size={20} />
+                                          <Car className="absolute left-6 top-1/2 -translate-y-1/2 text-[var(--border-primary)] group-focus-within:text-gold transition-colors" size={20} />
                                           <select className="w-full pl-16 pr-8 py-6 bg-primary/5  rounded-[2rem] text-sm font-black text-primary appearance-none outline-none focus:border-gold/50 focus:bg-gold/5 transition-all" value={selectedCar} onChange={(e) => setSelectedCar(e.target.value)}>
-                                             {cars.map(c => <option key={c.id} disabled={c.status !== 'Idle'} className="bg-obsidian">{c.id} - {c.model}</option>)}
+                                             {cars.map(c => <option key={c.id} disabled={c.status !== 'Idle'} className="bg-[var(--bg-primary)]">{c.id} - {c.model}</option>)}
                                           </select>
                                        </div>
                                     </div>
@@ -491,7 +491,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
 
                         {/* Designer Footer */}
                         {!formSuccess && (
-                           <div className="p-10 bg-obsidian border-t border-[var(--border-primary)]  shrink-0 space-y-6">
+                           <div className="p-10 bg-[var(--bg-primary)] border-t border-[var(--border-primary)]  shrink-0 space-y-6">
                               <button
                                  form="mission-form-final"
                                  type="submit"
@@ -508,7 +508,7 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
                      </div>
 
                      {/* Designer Map Viewport */}
-                     <div className="flex-1 relative bg-obsidian-light h-full">
+                     <div className="flex-1 relative bg-[var(--bg-primary)]-light h-full">
                         <MapContainer center={[34.0522, -118.2437]} zoom={12} className="w-full h-full" style={{ height: '100%', width: '100%' }}>
                            <MapResizer />
                            <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png" />
@@ -552,4 +552,6 @@ export default function TripsView({ mapTheme, trips, setTrips, cars, setCars, dr
       </div>
    );
 }
+
+
 

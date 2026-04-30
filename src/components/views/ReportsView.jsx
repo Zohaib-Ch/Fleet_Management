@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   FileText, Download, Filter, Search, Calendar, ShieldCheck, 
@@ -220,3 +220,5 @@ export default function ReportsView() {
     </div>
   );
 }
+
+

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { 
   ResponsiveContainer, AreaChart, Area, XAxis, YAxis, 
   CartesianGrid, Tooltip, PieChart, Pie, Cell, 
@@ -9,7 +9,7 @@ import {
 const CustomTooltip = ({ active, payload, label, theme }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="glass-obsidian p-4 rounded-2xl border border-white/10 shadow-2xl">
+      <div className="glass-obsidian p-4 rounded-2xl border border-[var(--border-primary)] shadow-2xl">
         <p className="text-[10px] font-black text-secondary uppercase tracking-widest mb-2">{label}</p>
         {payload.map((entry, index) => (
           <div key={index} className="flex items-center gap-3">
@@ -200,3 +200,5 @@ export const AlertSeverityMix = ({ data }) => (
     </PieChart>
   </ResponsiveContainer>
 );
+
+

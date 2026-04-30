@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Battery, Fuel, ChevronRight, Plus, X, Check, Car, Hash, Calendar, ShieldCheck, Zap, MoreHorizontal, Activity, Search, User } from 'lucide-react';
 import HolographicCard from '../ui/HolographicCard';
@@ -340,3 +340,5 @@ export default function FleetDetailsView({ cars, setCars, onSelectCar, addLog })
       </div>
    );
 }
+
+

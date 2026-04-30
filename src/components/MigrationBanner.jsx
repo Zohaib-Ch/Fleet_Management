@@ -1,4 +1,4 @@
-import { AlertTriangle } from "lucide-react";
+﻿import { AlertTriangle } from "lucide-react";
 import { migrationBanner } from "../data/dummyData";
 
 export default function MigrationBanner() {
@@ -24,3 +24,4 @@ export default function MigrationBanner() {
     </div>
   );
 }
+

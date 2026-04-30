@@ -17,6 +17,8 @@ export default function DriversView({ drivers, setDrivers, onSelectDriver, addLo
   // Form state
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [photoPreview, setPhotoPreview] = useState(null);
+  const fileInputRef = useRef(null);
 
   const filteredDrivers = (drivers || []).filter(d =>
     d.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -34,7 +36,7 @@ export default function DriversView({ drivers, setDrivers, onSelectDriver, addLo
       rating: '4.9',
       tripsThisWeek: 0,
       onTimeRate: 100,
-      avatar: `https://i.pravatar.cc/150?u=${name}`,
+      avatar: photoPreview || `https://i.pravatar.cc/150?u=${name}`,
       activeRouteId: null,
       currentLocation: [34.0522, -118.2437]
     };
@@ -47,7 +49,19 @@ export default function DriversView({ drivers, setDrivers, onSelectDriver, addLo
       setShowAddForm(false);
       setName('');
       setEmail('');
+      setPhotoPreview(null);
     }, 1500);
+  };
+
+  const handlePhotoUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhotoPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -114,9 +128,28 @@ export default function DriversView({ drivers, setDrivers, onSelectDriver, addLo
                   <form onSubmit={handleAddDriver} className="space-y-8">
                     <div className="flex flex-col md:flex-row gap-10">
                       <div className="flex flex-col items-center gap-6">
-                        <div className="w-32 h-32 rounded-[2.5rem] bg-primary/5 border-2 border-dashed  flex flex-col items-center justify-center text-secondary hover:bg-primary/5 hover:border-gold/50 cursor-pointer transition-all group p-4 text-center">
-                          <Camera size={32} className="group-hover:text-gold transition-colors mb-2" />
-                          <span className="text-[9px] font-black uppercase tracking-widest">Biometric Photo</span>
+                        <input
+                          type="file"
+                          ref={fileInputRef}
+                          onChange={handlePhotoUpload}
+                          accept="image/*"
+                          className="hidden"
+                        />
+                        <div
+                          onClick={() => fileInputRef.current.click()}
+                          className="w-32 h-32 rounded-[2.5rem] bg-primary/5 border-2 border-dashed flex flex-col items-center justify-center text-secondary hover:bg-primary/5 hover:border-gold/50 cursor-pointer transition-all group p-4 text-center relative overflow-hidden"
+                        >
+                          {photoPreview ? (
+                            <img src={photoPreview} alt="Preview" className="w-full h-full object-cover rounded-[2rem]" />
+                          ) : (
+                            <>
+                              <Camera size={32} className="group-hover:text-gold transition-colors mb-2" />
+                              <span className="text-[9px] font-black uppercase tracking-widest">Biometric Photo</span>
+                            </>
+                          )}
+                          <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span className="text-[8px] text-white font-black uppercase">Change Photo</span>
+                          </div>
                         </div>
                       </div>
 
@@ -194,7 +227,7 @@ export default function DriversView({ drivers, setDrivers, onSelectDriver, addLo
             <div className="flex justify-between items-start mb-8 relative z-10">
               <div className="flex items-center gap-5">
                 <div className="relative">
-                  <img src={driver.avatar} alt={driver.name} className="w-20 h-20 rounded-[2rem] object-cover ring-2 ring-white/10 group-hover:ring-gold/50 transition-all duration-500" />
+                  <img src={driver.avatar} alt={driver.name} className="w-20 h-20 rounded-[2rem] object-cover ring-2 ring-[var(--border-primary)] group-hover:ring-gold/50 transition-all duration-500" />
                   <div className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-4 border-obsidian ${driver.activeRouteId ? 'bg-emerald-500 glow-emerald' : 'bg-slate-700'}`}></div>
                 </div>
                 <div>
@@ -257,3 +290,5 @@ export default function DriversView({ drivers, setDrivers, onSelectDriver, addLo
     </div>
   );
 }
+
+

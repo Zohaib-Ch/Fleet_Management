@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Navigation, CheckCircle, PlusCircle, AlertTriangle, 
@@ -45,11 +45,11 @@ export default function ActivityFeed({ logs, className = "" }) {
                     <config.icon size={20} className={config.color} />
                   </div>
                   
-                  <div className="glass-obsidian p-5 rounded-[1.5rem] border-white/5 group-hover:border-white/10 transition-all">
+                  <div className="glass-obsidian p-5 rounded-[1.5rem] border-[var(--border-primary)] group-hover:border-[var(--border-primary)] transition-all">
                     <div className="flex justify-between items-start mb-2">
                       <div className="flex items-center gap-3">
                         {log.avatar && (
-                          <img src={log.avatar} alt="avatar" className="w-6 h-6 rounded-lg ring-1 ring-white/10" />
+                          <img src={log.avatar} alt="avatar" className="w-6 h-6 rounded-lg ring-1 ring-[var(--border-primary)]" />
                         )}
                         <p className="text-sm font-medium text-secondary leading-relaxed">
                           <span className="text-primary font-black uppercase tracking-wider mr-2">{log.driver}</span>
@@ -80,3 +80,5 @@ export default function ActivityFeed({ logs, className = "" }) {
     </div>
   );
 }
+
+

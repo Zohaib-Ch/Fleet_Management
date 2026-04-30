@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, Phone, Mail, Award, Calendar, 
@@ -46,7 +46,7 @@ export default function DriverDetailView({ driver, onBack, cars, trips }) {
                  <div className="relative mb-8 group">
                     <div className="relative overflow-hidden rounded-[3.5rem]">
                        <div className="scan-line"></div>
-                       <img src={driver.avatar} className="w-48 h-48 rounded-[3.5rem] object-cover ring-4 ring-white/10 shadow-2xl transition-all duration-700" alt="identity" />
+                       <img src={driver.avatar} className="w-48 h-48 rounded-[3.5rem] object-cover ring-4 ring-[var(--border-primary)] shadow-2xl transition-all duration-700" alt="identity" />
                     </div>
                     <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-gold text-obsidian px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl shadow-gold/20">
                        ACTIVE SYNC
@@ -226,7 +226,7 @@ export default function DriverDetailView({ driver, onBack, cars, trips }) {
         {showAssignForm && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-obsidian/90 backdrop-blur-2xl animate-in fade-in duration-500"
+            className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-[var(--bg-primary)]/90 backdrop-blur-2xl animate-in fade-in duration-500"
           >
             <motion.div 
               initial={{ scale: 0.9, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 30 }}
@@ -295,3 +295,5 @@ export default function DriverDetailView({ driver, onBack, cars, trips }) {
     </div>
   );
 }
+
+

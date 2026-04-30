@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { 
   ArrowLeft, Battery, Fuel, Wrench, Shield, Zap, 
@@ -40,7 +40,7 @@ export default function CarDetailView({ car, onBack }) {
                <span>Fleet</span> <ChevronRight size={12} /> <span>Telemetry Node</span> <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div> <span className="text-emerald-500">NOMINAL</span>
             </div>
             <h2 className="text-5xl font-luxury text-primary tracking-tighter italic uppercase">Asset {car.id}</h2>
-            <p className="text-secondary font-bold uppercase tracking-[0.2em] mt-3 text-sm">{car.model} — VIN: {car.vin}</p>
+            <p className="text-secondary font-bold uppercase tracking-[0.2em] mt-3 text-sm">{car.model} â€” VIN: {car.vin}</p>
          </div>
          <div className="flex flex-wrap gap-4">
             <button onClick={onBack} className="flex items-center gap-3 px-8 py-4 bg-primary/5  text-primary font-black rounded-2xl hover:bg-primary/10 transition-all uppercase tracking-widest text-[10px]">
@@ -174,10 +174,10 @@ export default function CarDetailView({ car, onBack }) {
                  <div className="absolute left-3 top-2 bottom-2 w-0.5 bg-primary/10"></div>
                  {[
                     { title: 'Core Optimization', time: '04.12.2026', desc: 'Neural link calibration successful', active: true },
-                    { title: 'Energy Exchange', time: '03.28.2026', desc: 'Battery cell swap — OK', active: false },
+                    { title: 'Energy Exchange', time: '03.28.2026', desc: 'Battery cell swap â€” OK', active: false },
                  ].map((event, i) => (
                     <div key={i} className="relative pl-12">
-                       <div className={`absolute left-0 top-1.5 w-6.5 h-6.5 rounded-full border-4 border-obsidian z-10 ${event.active ? 'bg-gold glow-gold' : 'bg-white/20'}`}></div>
+                       <div className={`absolute left-0 top-1.5 w-6.5 h-6.5 rounded-full border-4 border-obsidian z-10 ${event.active ? 'bg-gold glow-gold' : 'bg-[var(--border-primary)]'}`}></div>
                        <div className="flex justify-between items-start mb-2">
                           <h4 className="text-sm font-black text-primary uppercase italic tracking-tighter">{event.title}</h4>
                           <span className="text-[9px] font-bold text-secondary uppercase">{event.time}</span>
@@ -216,7 +216,7 @@ export default function CarDetailView({ car, onBack }) {
         {showServiceForm && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-obsidian/90 backdrop-blur-2xl animate-in fade-in duration-500"
+            className="fixed inset-0 z-[300] flex items-center justify-center p-6 bg-[var(--bg-primary)]/90 backdrop-blur-2xl animate-in fade-in duration-500"
           >
             <motion.div 
               initial={{ scale: 0.9, y: 30 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, y: 30 }}
@@ -273,3 +273,5 @@ export default function CarDetailView({ car, onBack }) {
     </div>
   );
 }
+
+

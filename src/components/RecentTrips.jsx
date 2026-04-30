@@ -1,4 +1,4 @@
-import { AlertTriangle } from "lucide-react";
+﻿import { AlertTriangle } from "lucide-react";
 import { recentTrips } from "../data/dummyData";
 
 export default function RecentTrips() {
@@ -26,7 +26,7 @@ export default function RecentTrips() {
               className="bg-[#E0E5EC] neo-extruded-sm rounded-xl p-5 animate-fade-in mb-4 last:mb-0"
               style={{ animationDelay: `${tripIdx * 0.06}s` }}
             >
-              {/* ── Vehicle header ── */}
+              {/* â”€â”€ Vehicle header â”€â”€ */}
               <div className="flex items-center gap-2.5 mb-3">
                 <div
                   className="w-8 h-8 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0 shadow-sm ring-2 ring-white"
@@ -41,14 +41,14 @@ export default function RecentTrips() {
                   <span className="text-[13px] font-semibold text-slate-800 truncate">
                     {trip.vehicleName}
                   </span>
-                  <span className="text-slate-300">·</span>
+                  <span className="text-slate-300">Â·</span>
                   <span className="text-[10px] font-mono font-medium text-slate-400 bg-slate-100 px-1.5 py-0.5 rounded shrink-0">
                     {trip.plate}
                   </span>
                 </div>
               </div>
 
-              {/* ── Events timeline ── */}
+              {/* â”€â”€ Events timeline â”€â”€ */}
               {trip.events.map((event, eventIdx) => {
                 const isStopEvent =
                   event.type === "stopped" || event.type === "stopped_home";
@@ -94,7 +94,7 @@ export default function RecentTrips() {
                       </span>
                     </div>
 
-                    {/* ── Expanded details for stops ── */}
+                    {/* â”€â”€ Expanded details for stops â”€â”€ */}
                     {isStopEvent && event.details && (
                       <div className="ml-6 mt-3 mb-1 space-y-1.5">
                         <div className="flex items-center gap-6 text-[11px]">
@@ -130,3 +130,4 @@ export default function RecentTrips() {
     </div>
   );
 }
+

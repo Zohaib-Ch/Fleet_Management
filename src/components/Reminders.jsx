@@ -1,4 +1,4 @@
-import { reminders } from "../data/dummyData";
+﻿import { reminders } from "../data/dummyData";
 
 export default function Reminders() {
   return (
@@ -15,3 +15,4 @@ export default function Reminders() {
     </div>
   );
 }
+

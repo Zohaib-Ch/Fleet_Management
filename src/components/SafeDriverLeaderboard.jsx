@@ -1,4 +1,4 @@
-export default function SafeDriverLeaderboard() {
+﻿export default function SafeDriverLeaderboard() {
   return (
     <div className="bg-[#E0E5EC] neo-extruded rounded-full px-6 py-4 flex items-center justify-between">
       <div className="flex items-center gap-3">
@@ -10,3 +10,4 @@ export default function SafeDriverLeaderboard() {
     </div>
   );
 }
+

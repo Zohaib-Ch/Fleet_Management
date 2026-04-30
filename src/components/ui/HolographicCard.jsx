@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 
 export default function HolographicCard({ children, className = "", glowColor = "gold" }) {
   const glowStyles = {
@@ -10,7 +10,7 @@ export default function HolographicCard({ children, className = "", glowColor = 
 
   return (
     <div
-      className={`glass-obsidian border border-white/5 ${glowStyles[glowColor] || glowStyles.gold} ${className}`}
+      className={`glass-obsidian border border-[var(--border-primary)] ${glowStyles[glowColor] || glowStyles.gold} ${className}`}
     >
       <div className="relative z-10">
         {children}
@@ -18,3 +18,5 @@ export default function HolographicCard({ children, className = "", glowColor = 
     </div>
   );
 }
+
+

@@ -1,10 +1,10 @@
-import { MapPin, Navigation, Plus, Minus, Crosshair } from "lucide-react";
+﻿import { MapPin, Navigation, Plus, Minus, Crosshair } from "lucide-react";
 import { vehicles, fleetSummary } from "../data/dummyData";
 
 export default function InteractiveMap() {
   return (
     <div className="relative w-full h-[420px] rounded-2xl overflow-hidden neo-extruded bg-[#E0E5EC]">
-      {/* Map Background — styled to look like a real map */}
+      {/* Map Background â€” styled to look like a real map */}
       <div className="absolute inset-0">
         {/* Base map layer */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#e8f0e6] via-[#f0f4ee] to-[#e5ede3]" />
@@ -89,7 +89,7 @@ export default function InteractiveMap() {
               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
                 <div className="bg-slate-800 text-white text-[10px] px-2.5 py-1.5 rounded-lg shadow-xl whitespace-nowrap">
                   <p className="font-semibold">{vehicle.name}</p>
-                  <p className="text-white/70">{vehicle.speed} • {vehicle.lastUpdate}</p>
+                  <p className="text-white/70">{vehicle.speed} â€¢ {vehicle.lastUpdate}</p>
                 </div>
                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-800 rotate-45 -mt-1" />
               </div>
@@ -153,3 +153,4 @@ export default function InteractiveMap() {
     </div>
   );
 }
+

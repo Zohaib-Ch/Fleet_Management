@@ -7,6 +7,13 @@
   --color-gold-light: #f1d592;
   --color-emerald-glow: #10b981;
   --color-blue-glow: #3b82f6;
+
+  --color-text-main: var(--text-primary);
+  --color-text-dim: var(--text-secondary);
+  --color-bg-prime: var(--bg-primary);
+  --color-bg-sec: var(--bg-secondary);
+  --color-border-prime: var(--border-primary);
+
   --font-sans: 'Manrope', system-ui, -apple-system, sans-serif;
   --font-luxury: 'Outfit', sans-serif;
 }
@@ -31,7 +38,7 @@
   --border-primary: rgba(0, 0, 0, 0.08);
   --glass-bg: rgba(255, 255, 255, 0.8);
   --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  --accent-gold: #b68d40;
+  --accent-gold: #8a6d2f;
 }
 
 /* Base Styles */
@@ -39,7 +46,7 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Grid Background */
@@ -268,19 +275,20 @@ body {
 }
 
 .luxury-popup .leaflet-popup-content-wrapper {
-  background: #0a0a0c !important;
-  color: #fff !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-primary) !important;
   border-radius: 12px !important;
   font-family: 'Outfit', sans-serif !important;
   text-transform: uppercase !important;
   font-size: 10px !important;
   font-weight: 900 !important;
   letter-spacing: 0.1em !important;
+  box-shadow: var(--card-shadow) !important;
 }
 
 .luxury-popup .leaflet-popup-tip {
-  background: #0a0a0c !important;
+  background: var(--bg-primary) !important;
 }
 
 /* Native Select Styling Fix */
@@ -293,14 +301,9 @@ select {
 }
 
 select option {
-  background-color: #121216;
-  color: #f8fafc;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
   padding: 12px;
-}
-
-:root.light select option {
-  background-color: #ffffff;
-  color: #0f172a;
 }
 
 select.appearance-none {

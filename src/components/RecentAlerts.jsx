@@ -1,4 +1,4 @@
-import { MapPin, Clock, AlertTriangle, Triangle } from "lucide-react";
+﻿import { MapPin, Clock, AlertTriangle, Triangle } from "lucide-react";
 import { recentAlerts } from "../data/dummyData";
 
 const alertIconMap = {
@@ -52,3 +52,4 @@ export default function RecentAlerts() {
     </div>
   );
 }
+

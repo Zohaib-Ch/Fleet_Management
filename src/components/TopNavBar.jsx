@@ -2,7 +2,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Car, Users, Navigation, TrendingUp,
-  FileText, ChevronDown, Sparkles, AlertTriangle
+  FileText, ChevronDown, Sparkles, AlertTriangle, Sun, Moon
 } from "lucide-react";
 
 export default function TopNavBar({ activeTab, onTabChange, appTheme, onToggleTheme }) {
@@ -120,8 +120,33 @@ export default function TopNavBar({ activeTab, onTabChange, appTheme, onToggleTh
           })}
         </nav>
 
-        {/* Right: User Profile */}
-        <div className="flex items-center gap-4">
+        {/* Right: User Profile & Theme Toggle */}
+        <div className="flex items-center gap-6">
+          {/* Theme Toggle Button */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onToggleTheme}
+            className="ml-6 relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-500 overflow-hidden"
+            style={{
+              background: isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)',
+              border: isLight ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.10)',
+              color: isLight ? '#d4af37' : '#f1d592',
+            }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={appTheme}
+                initial={{ y: 20, opacity: 0, rotate: -45 }}
+                animate={{ y: 0, opacity: 1, rotate: 0 }}
+                exit={{ y: -20, opacity: 0, rotate: 45 }}
+                transition={{ duration: 0.3 }}
+              >
+                {isLight ? <Moon size={20} fill="currentColor" /> : <Sun size={20} fill="currentColor" />}
+              </motion.div>
+            </AnimatePresence>
+          </motion.button>
+
           <div className="flex items-center gap-4 cursor-pointer group">
             <div className="text-right hidden sm:block">
               <p
@@ -163,3 +188,4 @@ export default function TopNavBar({ activeTab, onTabChange, appTheme, onToggleTh
     </header>
   );
 }
+

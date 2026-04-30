@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import {
   BarChart,
   Bar,
@@ -20,7 +20,7 @@ const CustomTooltip = ({ active, payload, label }) => {
           <p className="font-bold text-[13px]">
             Total {payload[0].value.toLocaleString()} km
           </p>
-          <p className="text-white/50 text-[11px] mt-0.5">{label}</p>
+          <p className="text-[var(--border-primary)]0 text-[11px] mt-0.5">{label}</p>
         </div>
         <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-slate-800 rotate-45 border-b border-r border-slate-700" />
       </div>
@@ -116,3 +116,4 @@ export default function MileageChart() {
     </div>
   );
 }
+

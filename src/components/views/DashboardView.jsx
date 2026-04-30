@@ -39,10 +39,10 @@ const createDriverIcon = (imageUrl, name) => {
   return L.divIcon({
     className: 'custom-leaflet-icon',
     html: `
-      <div class="flex items-center gap-3 bg-obsidian/90 backdrop-blur-md p-1 pr-4 rounded-2xl border border-white/10 shadow-2xl transition-all hover:scale-110">
-         <img src="${imageUrl}" class="w-8 h-8 rounded-xl ring-1 ring-white/20" />
+      <div class="flex items-center gap-3 bg-[var(--bg-secondary)] backdrop-blur-md p-1 pr-4 rounded-2xl border border-[var(--border-primary)] shadow-2xl transition-all hover:scale-110">
+         <img src="${imageUrl}" class="w-8 h-8 rounded-xl ring-1 ring-[var(--border-primary)]" />
          <div class="flex flex-col">
-           <span class="text-[10px] font-black text-white uppercase tracking-wider">${name}</span>
+           <span class="text-[10px] font-black text-[var(--text-primary)] uppercase tracking-wider">${name}</span>
            <div class="flex items-center gap-1">
              <div class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></div>
              <span class="text-[8px] text-blue-400 font-bold uppercase">Tracking</span>
@@ -85,7 +85,7 @@ const SortableSection = ({ id, children }) => {
       <div
         {...attributes}
         {...listeners}
-        className="absolute top-6 right-6 p-2 bg-white/5 border border-white/10 rounded-xl cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity z-20"
+        className="absolute top-6 right-6 p-2 bg-[var(--border-primary)] border border-[var(--border-primary)] rounded-xl cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity z-20"
       >
         <GripVertical size={16} className="text-secondary" />
       </div>
@@ -154,12 +154,12 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
 
   return (
     <div className="space-y-10 view-transition pb-20">
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 glass-obsidian p-8 rounded-[2.5rem] border-white/5 relative z-30">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 glass-obsidian p-8 rounded-[2.5rem] border-[var(--border-primary)] relative z-30">
         <div className="flex flex-wrap gap-4">
           <div className="relative">
             <button
               onClick={() => setIsFilterOpen(!isFilterOpen)}
-              className="flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-[10px] font-black text-primary uppercase tracking-widest hover:bg-white/10 transition-all"
+              className="flex items-center gap-3 px-6 py-3 bg-[var(--border-primary)] border border-[var(--border-primary)] rounded-2xl text-[10px] font-black text-primary uppercase tracking-widest hover:bg-[var(--border-primary)] transition-all"
             >
               <Filter size={14} className="text-gold" />
               Intelligence Filters
@@ -172,7 +172,7 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
-                  className="absolute top-full left-0 mt-4 w-72 glass-obsidian p-6 rounded-3xl border border-white/10 shadow-2xl z-[100]"
+                  className="absolute top-full left-0 mt-4 w-72 glass-obsidian p-6 rounded-3xl border border-[var(--border-primary)] shadow-2xl z-[100]"
                 >
                   <div className="space-y-6">
                     <div>
@@ -182,7 +182,7 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
                           <button
                             key={t}
                             onClick={() => setFilters(prev => ({ ...prev, timeWindow: t }))}
-                            className={`py-2 rounded-xl text-[10px] font-black uppercase transition-all ${filters.timeWindow === t ? 'bg-gold text-obsidian' : 'bg-white/5 text-secondary hover:bg-white/10'}`}
+                            className={`py-2 rounded-xl text-[10px] font-black uppercase transition-all ${filters.timeWindow === t ? 'bg-gold text-obsidian' : 'bg-[var(--border-primary)] text-secondary hover:bg-[var(--border-primary)]'}`}
                           >
                             {t}
                           </button>
@@ -195,7 +195,7 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
             </AnimatePresence>
           </div>
 
-          <div className="flex items-center gap-2 bg-white/5 p-1 rounded-2xl border border-white/10">
+          <div className="flex items-center gap-2 bg-[var(--border-primary)] p-1 rounded-2xl border border-[var(--border-primary)]">
             {[
               { key: 'liveSignal', label: 'Signal' },
               { key: 'fleetStatus', label: 'Fleet' },
@@ -204,7 +204,11 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
               <button
                 key={toggle.key}
                 onClick={() => toggleVisibility(toggle.key)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all ${visibility[toggle.key] ? 'bg-primary text-white shadow-lg' : 'text-secondary hover:bg-white/5'}`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all ${
+                  visibility[toggle.key] 
+                    ? (mapTheme === 'light' ? 'bg-white text-obsidian shadow-lg' : 'bg-primary text-white shadow-lg') 
+                    : 'text-secondary hover:bg-[var(--border-primary)]'
+                }`}
               >
                 {visibility[toggle.key] ? <Eye size={12} /> : <EyeOff size={12} />}
                 {toggle.label}
@@ -232,7 +236,7 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
         ].map((kpi, i) => (
           <HolographicCard key={i} glowColor={kpi.glow} className="p-8 rounded-[2.5rem]">
             <div className="flex justify-between items-start mb-6">
-              <div className={`p-4 rounded-2xl bg-white/5 border border-white/10 ${kpi.color}`}>
+              <div className={`p-4 rounded-2xl bg-[var(--border-primary)] border border-[var(--border-primary)] ${kpi.color}`}>
                 <kpi.icon size={24} />
               </div>
               <TrendingUp size={16} className="text-emerald-500 opacity-50" />
@@ -252,14 +256,14 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
                 {id === 'trend' && (
                   <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
                     <HolographicCard glowColor="blue" className="xl:col-span-2 rounded-[3rem] p-3 min-h-[600px] overflow-hidden">
-                      <div className="absolute top-8 left-8 z-[1000] flex items-center gap-3 glass-obsidian px-5 py-3 rounded-2xl border border-white/10 shadow-2xl">
+                      <div className="absolute top-8 left-8 z-[1000] flex items-center gap-3 glass-obsidian px-5 py-3 rounded-2xl border border-[var(--border-primary)] shadow-2xl">
                         <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
                         <span className="text-[10px] font-black text-primary uppercase tracking-[0.2em]">Live Global Telemetry</span>
                       </div>
                       <div className="w-full h-[580px] rounded-[2.5rem] overflow-hidden relative">
                         <MapContainer center={[34.0522, -118.2437]} zoom={11} className="w-full h-full" style={{ height: '580px', width: '100%', background: mapTheme === 'dark' ? '#0a0a0c' : '#f8fafc' }}>
                           <MapResizer />
-                          <TileLayer url={mapTheme === 'dark' ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png" : "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"} />
+                          <TileLayer url={mapTheme === 'dark' ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png" : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"} />
                           {trips.map(trip => (
                             <Polyline key={trip.id} positions={trip.path} color={mapTheme === 'dark' ? "#d4af37" : "#f59e0b"} weight={3} opacity={0.6} />
                           ))}
@@ -278,7 +282,7 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
                         </div>
                         <div className="space-y-6 overflow-y-auto pr-2 custom-scrollbar">
                           {trips.filter(t => t.progress < 100).map(trip => (
-                            <motion.div key={trip.id} whileHover={{ x: 10 }} className="p-6 rounded-3xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.06] transition-all group cursor-pointer relative overflow-hidden">
+                            <motion.div key={trip.id} whileHover={{ x: 10 }} className="p-6 rounded-3xl bg-white/[0.03] border border-[var(--border-primary)] hover:bg-white/[0.06] transition-all group cursor-pointer relative overflow-hidden">
                               <div className="flex justify-between items-start mb-4 relative z-10">
                                 <div>
                                   <h4 className="text-sm font-black text-primary group-hover:text-gold transition-colors">{trip.name}</h4>
@@ -293,7 +297,7 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
                                 </div>
                                 <span className="text-primary">{trip.progress}%</span>
                               </div>
-                              <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden relative z-10">
+                              <div className="w-full h-1 bg-[var(--border-primary)] rounded-full overflow-hidden relative z-10">
                                 <div className="h-full bg-gold transition-all duration-1000" style={{ width: `${trip.progress}%` }}></div>
                               </div>
                             </motion.div>
@@ -355,7 +359,7 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
                       <h3 className="text-2xl font-luxury text-primary tracking-tighter uppercase italic mb-10">INTELLIGENCE ALERTS</h3>
                       <div className="space-y-6">
                         {alerts.slice(0, 3).map(alert => (
-                          <div key={alert.id} className="flex gap-6 p-6 rounded-3xl bg-white/[0.02] border border-white/5">
+                          <div key={alert.id} className="flex gap-6 p-6 rounded-3xl bg-white/[0.02] border border-[var(--border-primary)]">
                             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${alert.type === 'critical' ? 'bg-red-500/10 text-red-500' : 'bg-blue-500/10 text-blue-500'}`}>
                               <AlertTriangle size={24} />
                             </div>
@@ -383,3 +387,5 @@ export default function DashboardView({ mapTheme, cars, drivers, trips, alerts, 
     </div>
   );
 }
+
+
